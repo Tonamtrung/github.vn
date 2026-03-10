@@ -114,7 +114,7 @@ h1 {
 
     position: absolute; bottom: 5px; left: 15px;
 
-    width: 420px; height: 280px; background: white;
+    width: 420px; height: 280px; background: rgb(247, 246, 242);
 
     z-index: 2; opacity: 0; visibility: hidden;
 
@@ -194,26 +194,22 @@ h1 {
 
 
 
-@media screen and (max-width: 600px) {
-    .envelope-wrapper { width: 300px; height: 200px; }
-    .envelope-wrapper::before { border-top-width: 110px; border-left-width: 150px; border-right-width: 150px; }
-    
-    .letter { 
-        width: 280px; 
-        height: 185px; 
-        left: 10px; 
-        padding: 15px; 
-        overflow-y: auto; /* Thêm dòng này để có thể cuộn nếu chữ quá dài */
-    }
+/* RESPONSIVE */
 
-    /* ĐOẠN CẦN SỬA CHÍNH */
-    .envelope-wrapper.open .letter { 
-        transform: translateY(-120px); /* Đẩy lên cao hơn (cũ là -160px) */
-        height: 450px;                 /* Tăng chiều cao để chứa đủ nội dung */
-    }
+@media screen and (max-width: 600px) {
+
+    .envelope-wrapper { width: 300px; height: 200px; }
+
+    .envelope-wrapper::before { border-top-width: 110px; border-left-width: 150px; border-right-width: 150px; }
+
+    .letter { width: 280px; height: 185px; left: 10px; padding: 15px; }
+
+    .envelope-wrapper.open .letter { transform: translateY(-140px); height: 420px; }
 
     .heart { top: 80px; width: 30px; height: 30px; }
-    .heart::before { left: -16px; } 
-    .heart::after { top: -16px; }
+
+    .heart::before { left: -16px; } .heart::after { top: -16px; }
+
     h1 { font-size: 32px; }
-}
+
+}   
