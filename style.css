@@ -9,7 +9,7 @@ html,body{
 margin:0;
 padding:0;
 width:100%;
-height:100vh;
+min-height:100vh;
 
 font-family:'Segoe UI',Tahoma,sans-serif;
 
@@ -21,7 +21,8 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 
-overflow:hidden;
+overflow-x:hidden;
+overflow-y:auto;
 }
 
 /* CONTAINER */
@@ -63,6 +64,8 @@ box-shadow:0 20px 40px rgba(0,0,0,0.5);
 cursor:pointer;
 
 perspective:1000px;
+
+overflow:visible;
 }
 
 /* FLAP */
@@ -98,7 +101,7 @@ transform:translateX(-50%);
 width:90%;
 max-width:380px;
 
-max-height:60vh;
+max-height:70vh;
 
 background:white;
 
@@ -130,7 +133,7 @@ transform:rotateX(180deg);
 opacity:1;
 visibility:visible;
 
-transform:translate(-50%,-160px);
+transform:translate(-50%,-150px);
 }
 
 /* HEART */
@@ -194,7 +197,7 @@ border-right:150px solid transparent;
 }
 
 .envelope-wrapper.open .letter{
-transform:translate(-50%,-110px);
+transform:translate(-50%,-100px);
 }
 
 }
