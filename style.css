@@ -49,7 +49,7 @@ h1{
     text-shadow:2px 2px 4px rgba(0,0,0,0.3);
 }
 
-/* ENVELOPE */
+/* PHONG BÌ */
 
 .envelope-wrapper{
     position:relative;
@@ -70,11 +70,12 @@ h1{
     overflow:visible;
 }
 
-/* NẮP THƯ */
+/* NẮP PHONG BÌ */
 
 .envelope-wrapper::before{
     content:"";
     position:absolute;
+
     top:0;
     left:0;
 
@@ -94,15 +95,15 @@ h1{
 .letter{
     position:absolute;
 
-    top:50%;
+    bottom:20px;
     left:50%;
 
-    transform:translate(-50%,0);
+    transform:translateX(-50%);
 
     width:90%;
     max-width:420px;
 
-    max-height:70vh;
+    max-height:65vh;
 
     background:#f7f6f2;
 
@@ -137,14 +138,14 @@ h1{
     opacity:1;
     visibility:visible;
 
-    transform:translate(-50%,-250px);
+    transform:translate(-50%,-220px);
 
     box-shadow:0 10px 25px rgba(0,0,0,0.3);
 
     z-index:20;
 }
 
-/* HEART */
+/* TRÁI TIM */
 
 .heart{
     position:absolute;
@@ -190,7 +191,7 @@ h1{
     pointer-events:none;
 }
 
-/* LÁ RƠI */
+/* HIỆU ỨNG LÁ RƠI */
 
 .leaf{
     position:fixed;
@@ -245,7 +246,7 @@ h1{
     }
 
     .envelope-wrapper.open .letter{
-        transform:translate(-50%,-170px);
+        transform:translate(-50%,-150px);
     }
 
 }
