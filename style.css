@@ -1,0 +1,108 @@
+:root {
+    --bg-color: #e9ebf0;
+    --env-color: #c5a059;
+    --env-dark: #b38b4d;
+    --gold-color: #d4af37;
+}
+
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    /* Đảm bảo đường dẫn background.jpg chính xác trong thư mục images */
+    background: url('images/background.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
+}
+
+/* Container chứa thiệp */
+.container { 
+    text-align: center; 
+    width: 100%; 
+    z-index: 20; 
+    position: relative; 
+}
+
+h1 {
+    font-size: 45px; margin: 10px 0;
+    background: linear-gradient(to right, #11dd3d, #080806, #121312);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Thêm bóng đổ nhẹ để nổi bật trên nền ảnh */
+}
+
+/* BAO THƯ */
+.envelope-wrapper {
+    position: relative; 
+    width: 450px; height: 300px; 
+    background-color: var(--env-color); 
+    margin: 0 auto; cursor: pointer;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+    perspective: 1000px;
+    z-index: 5;
+}
+
+.envelope-wrapper::before {
+    content: ""; position: absolute; top: 0; left: 0; z-index: 10;
+    border-top: 160px solid var(--env-dark); 
+    border-left: 225px solid transparent; border-right: 225px solid transparent;
+    transform-origin: top; 
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s 0.4s;
+}
+
+/* LÁ THƯ */
+.letter {
+    position: absolute; bottom: 5px; left: 15px;
+    width: 420px; height: 280px; background: white;
+    z-index: 2; opacity: 0; visibility: hidden;
+    transition: all 0.6s ease-in-out; 
+    padding: 30px; 
+    box-sizing: border-box;
+    overflow-y: auto; /* Cho phép cuộn nếu thư dài */
+    color: #333;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.envelope-wrapper.open::before { transform: rotateX(180deg); z-index: 1; }
+.envelope-wrapper.open .letter { 
+    visibility: visible; opacity: 1; 
+    transform: translateY(-220px); height: 500px; z-index: 3;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+}
+
+/* TRÁI TIM */
+.heart {
+    position: absolute; top: 130px; left: 50%; width: 40px; height: 40px;
+    background: #d32f2f; transform: translate(-50%, 0) rotate(45deg); z-index: 11;
+    transition: 0.5s;
+}
+.heart::before, .heart::after { content: ""; position: absolute; width: 40px; height: 40px; background: #d32f2f; border-radius: 50%; }
+.heart::before { left: -22px; } .heart::after { top: -22px; }
+.envelope-wrapper.open .heart { opacity: 0; pointer-events: none; }
+
+/* HIỆU ỨNG RƠI */
+.leaf { position: fixed; top: -50px; z-index: 2; pointer-events: none; }
+.leaf img { width: 100%; height: 100%; object-fit: contain; }
+
+.photo-leaf {
+    position: fixed; top: -100px; z-index: 1; 
+    pointer-events: none;
+    border: 5px solid white; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.photo-leaf img { width: 100%; height: 100%; object-fit: cover; }
+
+/* RESPONSIVE */
+@media screen and (max-width: 600px) {
+    .envelope-wrapper { width: 300px; height: 200px; }
+    .envelope-wrapper::before { border-top-width: 110px; border-left-width: 150px; border-right-width: 150px; }
+    .letter { width: 280px; height: 185px; left: 10px; padding: 15px; }
+    .envelope-wrapper.open .letter { transform: translateY(-160px); height: 420px; }
+    .heart { top: 80px; width: 30px; height: 30px; }
+    .heart::before { left: -16px; } .heart::after { top: -16px; }
+    h1 { font-size: 32px; }
+}
