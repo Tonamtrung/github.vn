@@ -1,3 +1,4 @@
+You said
 :root {
 
     --bg-color: #e9ebf0;
@@ -18,6 +19,10 @@ body, html {
 
     width: 100%; height: 100%;
 
+    background-color: #f4f4f4 !important; 
+
+    color-scheme: light;
+
     /* Đảm bảo đường dẫn background.jpg chính xác trong thư mục images */
 
     background: url('images/background.jpg') no-repeat center center fixed;
@@ -36,16 +41,13 @@ body, html {
 
 /* Container chứa thiệp */
 
-.container {
-
-    text-align: center;
-
-    width: 100%;
-
-    z-index: 20;
-
+.container { 
+    text-align: center; 
+    width: 100%; 
+    z-index: 20; 
     position: relative;
-
+    /* Tăng padding để đẩy bao thư xuống thấp hơn trung tâm một chút */
+    padding-top: 120px;
 }
 
 
@@ -68,28 +70,17 @@ h1 {
 
 }
 
-
-
-/* BAO THƯ */
-
 .envelope-wrapper {
-
-    position: relative;
-
-    width: 450px; height: 250px;
-
-    background-color: var(--env-color);
-
-    margin: 0 auto; cursor: pointer;
-
+    position: relative; 
+    width: 450px; 
+    height: 300px; 
+    background-color: var(--env-color); 
+    margin: 50px auto 0; /* Thêm margin-top 50px để hạ thấp vị trí */
+    cursor: pointer;
     box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-
     perspective: 1000px;
-
     z-index: 5;
-
 }
-
 
 
 .envelope-wrapper::before {
@@ -105,9 +96,6 @@ h1 {
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s 0.4s;
 
 }
-
-
-
 /* LÁ THƯ */
 
 .letter {
@@ -197,21 +185,20 @@ h1 {
 /* RESPONSIVE */
 
 @media screen and (max-width: 600px) {
+    .container {
+        /* Đẩy mạnh hơn trên điện thoại để chừa chỗ cho lá thư trồi lên */
+        padding-top: 180px; 
+    }
 
-    .envelope-wrapper { width: 300px; height: 200px; }
+    .envelope-wrapper { 
+        width: 300px; 
+        height: 200px; 
+        margin: 0 auto; 
+    }
 
-    .envelope-wrapper::before { border-top-width: 110px; border-left-width: 150px; border-right-width: 150px; }
-
-    .letter { width: 280px; height: 185px; left: 10px; padding: 15px; }
-
-    .envelope-wrapper.open .letter { transform: translateY(-120px); height: 420px; }
-
-    .heart { top: 80px; width: 30px; height: 30px; }
-
-    .heart::before { left: -16px; } .heart::after { top: -16px; }
-
-    h1 { font-size: 32px; }
-
-}   
-
-
+    .envelope-wrapper.open .letter { 
+        /* Giảm độ trồi lên của lá thư trên điện thoại */
+        transform: translateY(-80px); 
+        height: 350px; 
+    }
+}
