@@ -143,7 +143,7 @@ h1 {
 
     visibility: visible; opacity: 1;
 
-    transform: translateY(-220px); height: 500px; z-index: 3;
+    transform: translateY(-50%); height: 40vh; z-index: 6;
 
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 
@@ -204,7 +204,7 @@ position: fixed; top: -100px; z-index: 1;
 
     .letter { width: 280px; height: 185px; left: 10px; padding: 15px; }
 
-    .envelope-wrapper.open .letter { transform: translateY(-160px); height: 420px; }
+    .envelope-wrapper.open .letter { transform: translateY(-120px); height: 40vh; }
 
     .heart { top: 80px; width: 30px; height: 30px; }
 
