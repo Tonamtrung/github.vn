@@ -1,189 +1,215 @@
+You said
 :root {
+
     --bg-color: #e9ebf0;
+
     --env-color: #c5a059;
+
     --env-dark: #b38b4d;
+
     --gold-color: #d4af37;
+
 }
 
-/* ===== BODY ===== */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+
+
+body, html {
+
+    margin: 0; padding: 0;
+
+    width: 100%; height: 100%;
+
+    /* Đảm bảo đường dẫn background.jpg chính xác trong thư mục images */
+
     background: url('images/background.jpg') no-repeat center center fixed;
+
     background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-x: hidden; /* Chống tràn ngang */
+
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+
+    display: flex; justify-content: center; align-items: center;
+
+    overflow: hidden;
+
 }
 
-/* ===== CONTAINER ===== */
+
+
+/* Container chứa thiệp */
+
 .container {
+
     text-align: center;
+
     width: 100%;
-    position: relative;
+
     z-index: 20;
-    padding: 20px;
-    box-sizing: border-box;
-}
 
-/* ===== TITLE ===== */
-h1 {
-    font-size: clamp(28px, 8vw, 45px); /* Co giãn linh hoạt theo màn hình */
-    margin: 10px 0 30px; /* Thêm khoảng cách dưới tiêu đề */
-    background: linear-gradient(to right, #11dd3d, #080806, #121312);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-}
-
-/* ===== ENVELOPE ===== */
-.envelope-wrapper {
     position: relative;
-    width: 100%;
-    max-width: 450px; 
-    aspect-ratio: 3 / 2; /* Giữ tỷ lệ bao thư chuẩn */
-    background: var(--env-color);
-    margin: 20px auto 0;
-    cursor: pointer;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+
+}
+
+
+
+h1 {
+
+    font-size: 45px; margin: 10px 0;
+
+    background: linear-gradient(to right, #11dd3d, #080806, #121312);
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    font-weight: bold;
+
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Thêm bóng đổ nhẹ để nổi bật trên nền ảnh */
+
+}
+
+
+
+/* BAO THƯ */
+
+.envelope-wrapper {
+
+    position: relative;
+
+    width: 450px; height: 300px;
+
+    background-color: var(--env-color);
+
+    margin: 0 auto; cursor: pointer;
+
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+
     perspective: 1000px;
+
+    z-index: 5;
+
 }
 
-/* NẮP THƯ */
+
+
 .envelope-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    /* Điều chỉnh nắp thư khớp với size bao */
-    border-top: 150px solid var(--env-dark); 
-    border-left: 225px solid transparent;
-    border-right: 225px solid transparent;
+
+    content: ""; position: absolute; top: 0; left: 0; z-index: 10;
+
+    border-top: 160px solid var(--env-dark);
+
+    border-left: 225px solid transparent; border-right: 225px solid transparent;
+
     transform-origin: top;
-    transition: transform .6s cubic-bezier(.4,0,.2,1), z-index .2s .4s;
-    z-index: 10;
+
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s 0.4s;
+
 }
 
-/* ===== LETTER (PHẦN QUAN TRỌNG ĐÃ SỬA) ===== */
+
+
+/* LÁ THƯ */
+
 .letter {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    height: 90%;
-    background: #f7f6f2;
-    padding: 25px;
+
+    position: absolute; bottom: 5px; left: 15px;
+
+    width: 420px; height: 260px; background: white;
+
+    z-index: 2; opacity: 0; visibility: hidden;
+
+    transition: all 0.6s ease-in-out;
+
+    padding: 30px;
+
     box-sizing: border-box;
-    overflow-y: auto;
+
+    overflow-y: auto; /* Cho phép cuộn nếu thư dài */
+
     color: #333;
+
     line-height: 1.6;
+
     text-align: left;
-    border-radius: 6px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
+
 }
 
-/* KHI MỞ THƯ */
-.envelope-wrapper.open::before {
-    transform: rotateX(180deg);
-    z-index: 1;
-}
+
+
+.envelope-wrapper.open::before { transform: rotateX(180deg); z-index: 1; }
 
 .envelope-wrapper.open .letter {
-    opacity: 1;
-    visibility: visible;
-    /* Chỉ nhảy lên 50% để không che mất chữ phía trên */
-    transform: translate(-50%, -50%); 
-    height: auto;
-    max-height: 75vh;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 12;
+
+    visibility: visible; opacity: 1;
+
+    transform: translateY(-220px); height: 500px; z-index: 3;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+
 }
 
-/* ===== HEART ===== */
+
+
+/* TRÁI TIM */
+
 .heart {
-    position: absolute;
-    top: 130px;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    background: #d32f2f;
-    transform: translateX(-50%) rotate(45deg);
-    z-index: 11;
-    transition: .5s;
-}
-.heart::before, .heart::after {
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: #d32f2f;
-    border-radius: 50%;
-}
-.heart::before { left: -22px; }
-.heart::after { top: -22px; }
 
-.envelope-wrapper.open .heart {
-    opacity: 0;
+    position: absolute; top: 130px; left: 50%; width: 40px; height: 40px;
+
+    background: #d32f2f; transform: translate(-50%, 0) rotate(45deg); z-index: 11;
+
+    transition: 0.5s;
+
+}
+
+.heart::before, .heart::after { content: ""; position: absolute; width: 40px; height: 40px; background: #d32f2f; border-radius: 50%; }
+
+.heart::before { left: -22px; } .heart::after { top: -22px; }
+
+.envelope-wrapper.open .heart { opacity: 0; pointer-events: none; }
+
+
+
+/* HIỆU ỨNG RƠI */
+
+.leaf { position: fixed; top: -50px; z-index: 2; pointer-events: none; }
+
+.leaf img { width: 100%; height: 100%; object-fit: contain; }
+
+
+
+.photo-leaf {
+position: fixed; top: -100px; z-index: 1;
+
     pointer-events: none;
+
+    border: 5px solid white;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+
 }
 
-/* ===== MOBILE OPTIMIZATION (ĐÃ FIX LỖI ẢNH TO VÀ THƯ NHẢY CAO) ===== */
+.photo-leaf img { width: 100%; height: 100%; object-fit: cover; }
+
+
+
+/* RESPONSIVE */
+
 @media screen and (max-width: 600px) {
-    .container {
-        padding-top: 60px;
-    }
 
-    .envelope-wrapper {
-        width: 90%;
-        max-width: 320px;
-    }
+    .envelope-wrapper { width: 300px; height: 200px; }
 
-    /* Chỉnh lại kích thước nắp thư cho mobile */
-    .envelope-wrapper::before {
-        border-top-width: 100px;
-        border-left-width: 160px;
-        border-right-width: 160px;
-    }
+    .envelope-wrapper::before { border-top-width: 110px; border-left-width: 150px; border-right-width: 150px; }
 
-    .heart {
-        top: 80px;
-        width: 30px;
-        height: 30px;
-    }
-    .heart::before, .heart::after {
-        width: 30px;
-        height: 30px;
-    }
-    .heart::before { left: -16px; }
-    .heart::after { top: -16px; }
+    .letter { width: 280px; height: 185px; left: 10px; padding: 15px; }
 
-    .envelope-wrapper.open .letter {
-        /* Đẩy lên mức vừa phải trên mobile */
-        transform: translate(-50%, -45%); 
-        width: 95%;
-        max-height: 60vh;
-        padding: 15px;
-    }
+    .envelope-wrapper.open .letter { transform: translateY(-160px); height: 420px; }
 
-    /* Giới hạn ảnh rơi không bị quá to */
-    .photo-leaf {
-        width: 70px !important; 
-        height: auto !important;
-    }
-    
-    .leaf {
-        width: 30px !important;
-    }
+    .heart { top: 80px; width: 30px; height: 30px; }
+
+    .heart::before { left: -16px; } .heart::after { top: -16px; }
+
+    h1 { font-size: 32px; }
+
 }
